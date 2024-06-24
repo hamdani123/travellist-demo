@@ -1,0 +1,16 @@
+pipeline {
+  agent any
+  environment {
+    staging_server="103.117.57.215" // app server ip 
+    remote_dir="//var//www//html//travellist-demo" // app server directory
+    remote_user="app" // app server user
+  }
+  stages {
+    stage('Deploy') {
+      steps {
+        sh 'rsync -avP --exclude ".env" --exclude "vendor" --exclude ".git" --exclude="storage" --delete ${WORKSPACE}/ ${remote_user}@${staging_server}:${remote_dir}'
+        sh 'scp -r ${WORKSPACE} ${remote_user}@${staging_server}:${remote_dir}'
+      }
+    }
+  }
+}
