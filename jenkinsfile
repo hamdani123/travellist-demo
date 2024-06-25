@@ -8,7 +8,6 @@ pipeline {
   stages {
     stage('Deploy') {
       steps {
-        sh 'rsync -avP --exclude ".env" --exclude "vendor" --exclude ".git" --exclude="storage" --delete ${WORKSPACE} ${remote_user}@${staging_server}:${remote_dir}'
         sh 'scp -r ${WORKSPACE} ${remote_user}@${staging_server}:${remote_dir}'
       }
     }
