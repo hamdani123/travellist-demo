@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Deploy to remote') {
       steps {
-        sh 'scp ${WORKSPACE}/* app@103.117.57.215:var/www/html/travellist-demo
+        sh 'scp ${WORKSPACE}/* app@103.117.57.215:var/www/html/travellist-demo'
       }
     }
   }
