@@ -1,14 +1,10 @@
 pipeline {
-  agent any
-  environment {
-    staging_server="103.117.57.215"
-    remote_dir="/var/www/html/travellist-demo"   
-    remote_user="app" 
+    agent any
   }
   stages {
-    stage('Deploy') {
+    stage('Deploy to remote') {
       steps {
-        sh 'scp -r ${WORKSPACE} ${remote_user}@${staging_server}:${remote_dir}'
+        sh 'scp ${WORKSPACE}/* app@103.117.57.215:var/www/html/travellist-demo
       }
     }
   }
